@@ -96,10 +96,43 @@ class _MyHomePageState extends State<MyHomePage> {
         });
   }
 
+
+
   void _deleteTransaction(String id) {
-    setState(() {
+    // showAlertDialog(context);
+    // setState(() {
+    //   _userTransaction.removeWhere((tx) => tx.id == id);
+    // });
+    Widget remindButton = FlatButton(
+        child: Text("Confirm"),
+        onPressed: () {
+          Navigator.of(context).pop();
+            setState(() {
       _userTransaction.removeWhere((tx) => tx.id == id);
     });
+        });
+    Widget cancelButton = FlatButton(
+        child: Text("Cancel"),
+        onPressed: () {
+          Navigator.of(context).pop();
+        });
+
+    AlertDialog alert = AlertDialog(
+      title: Text("Notice"),
+      content: Text("please confirm to delete this transcaction"),
+      actions: [
+        remindButton,
+        cancelButton,
+      ],
+    );
+
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return alert;
+        // Navigator.of(context).pop();
+      },
+    );
   }
 
   @override
