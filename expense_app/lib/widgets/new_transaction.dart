@@ -31,12 +31,29 @@ class _NewTransactionState extends State<NewTransaction> {
     //   content: Text("hello world"),
     // );
 
-    if (enteredTitle.isEmpty || enteredAmount < 0||_selectedDate ==null) {
-      return Fluttertoast.showToast(
-        msg: "this is a tost", 
-        gravity: ToastGravity.CENTER,
+    Function toast(
+      String msg, Toast toast, ToastGravity toastGravity, Color colors) {
+    Fluttertoast.showToast(
+        msg: msg,
+        toastLength: toast,
+        gravity: toastGravity,
+        backgroundColor: colors,
+        textColor: Colors.white,
+        fontSize: 16.0);
+  }
 
-        )
+    if (enteredTitle.isEmpty ||enteredAmount.isNaN|| enteredAmount < 0||_selectedDate ==null) {
+      // Fluttertoast.showToast(
+      //   msg: "this is a tost", 
+      //   gravity: ToastGravity.CENTER,
+
+      //   );
+      toast(
+                    "This is Demo 2 Toast at top",
+                    Toast.LENGTH_SHORT,
+                    ToastGravity.CENTER,
+                    Theme.of(context).primaryColor); 
+      return
       ;
     }
     Widget remindButton = FlatButton(
@@ -56,7 +73,7 @@ class _NewTransactionState extends State<NewTransaction> {
     
 
 
-  AlertDialog alert  =AlertDialog(
+  AlertDialog alert =AlertDialog(
     title:Text("Notice"),
     content: Text("please confirm this transcaction"),
     actions:[
@@ -79,6 +96,7 @@ class _NewTransactionState extends State<NewTransaction> {
     final enteredAmount = double.parse(_amountController.text);
     
     if (enteredTitle.isEmpty || enteredAmount < 0||_selectedDate ==null) {
+
       return;
     }
     widget.addTx(enteredTitle, enteredAmount,_selectedDate);
