@@ -20,25 +20,44 @@ class _NewTransactionState extends State<NewTransaction> {
   final _amountController = TextEditingController();
   DateTime _selectedDate;
 
-    showAlertDialog(BuildContext context) {
+  Function toast(
+      String msg, Toast toast, ToastGravity toastGravity, Color colors) {
+    Fluttertoast.showToast(
+        msg: msg,
+        toastLength: toast,
+        gravity: toastGravity,
+        backgroundColor: colors,
+        textColor: Colors.white,
+        fontSize: 16.0);
+  }
+
+
+    void showAlertDialog(BuildContext context) {
     final enteredTitle = _titleController.text;
-    final enteredAmount = double.parse(_amountController.text);
+    final enteredAmount = _amountController.text;
     
-    // final snackBar = SnackBar(
-    //   elevation: 8,
-    //   duration: new Duration(seconds:4),
-    //   backgroundColor: Theme.of(context).primaryColor,
-    //   content: Text("hello world"),
-    // );
+  if (enteredTitle.isEmpty ) {
+     toast(
+                    "Please input title",
+                    Toast.LENGTH_SHORT,
+                    ToastGravity.CENTER,
+                    Theme.of(context).primaryColor); 
+  }
+  else if (enteredAmount.isEmpty||double.parse(enteredAmount) < 0) {
+ toast(
+                    "Please input amount using number",
+                    Toast.LENGTH_SHORT,
+                    ToastGravity.CENTER,
+                    Theme.of(context).primaryColor); 
+  }else if(_selectedDate ==null){
+     toast(
+                    "Please choose date",
+                    Toast.LENGTH_SHORT,
+                    ToastGravity.CENTER,
+                    Theme.of(context).primaryColor); 
+  }
 
-    if (enteredTitle.isEmpty || enteredAmount < 0||_selectedDate ==null) {
-      return Fluttertoast.showToast(
-        msg: "this is a tost", 
-        gravity: ToastGravity.CENTER,
 
-        )
-      ;
-    }
     Widget remindButton = FlatButton(
       child: Text("Confirm") ,
       onPressed:  () {
