@@ -1,6 +1,9 @@
+import 'dart:io';
+
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
-
+import 'package:fluttertoast/fluttertoast.dart';
 class NewTransaction extends StatefulWidget {
   final Function addTx;
 
@@ -8,6 +11,7 @@ class NewTransaction extends StatefulWidget {
 
   @override
   _NewTransactionState createState() => _NewTransactionState();
+
 }
 
 class _NewTransactionState extends State<NewTransaction> {
@@ -15,6 +19,60 @@ class _NewTransactionState extends State<NewTransaction> {
 
   final _amountController = TextEditingController();
   DateTime _selectedDate;
+
+    showAlertDialog(BuildContext context) {
+    final enteredTitle = _titleController.text;
+    final enteredAmount = double.parse(_amountController.text);
+    
+    // final snackBar = SnackBar(
+    //   elevation: 8,
+    //   duration: new Duration(seconds:4),
+    //   backgroundColor: Theme.of(context).primaryColor,
+    //   content: Text("hello world"),
+    // );
+
+    if (enteredTitle.isEmpty || enteredAmount < 0||_selectedDate ==null) {
+      return Fluttertoast.showToast(
+        msg: "this is a tost", 
+        gravity: ToastGravity.CENTER,
+
+        )
+      ;
+    }
+    Widget remindButton = FlatButton(
+      child: Text("Confirm") ,
+      onPressed:  () {
+        Navigator.of(context).pop();
+        _submitData();
+      }
+    );
+        Widget cancelButton = FlatButton(
+      child: Text("Cancel") ,
+      onPressed:  () {
+        Navigator.of(context).pop();
+        Navigator.of(context).pop();
+      }
+    );
+    
+
+
+  AlertDialog alert  =AlertDialog(
+    title:Text("Notice"),
+    content: Text("please confirm this transcaction"),
+    actions:[
+      remindButton,
+      cancelButton,
+    ],
+  );
+
+  showDialog(
+    context: context,
+    builder: (BuildContext context) {
+      return alert;
+      // Navigator.of(context).pop();
+    },
+  );
+  }
 
   void _submitData() {
     final enteredTitle = _titleController.text;
@@ -53,6 +111,7 @@ class _NewTransactionState extends State<NewTransaction> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.end,
             children: <Widget>[
+              // CupertinoTextField(placeholder: ,)
               TextField(
                 decoration: InputDecoration(labelText: 'Title'),
                 controller: _titleController,
@@ -73,6 +132,11 @@ class _NewTransactionState extends State<NewTransaction> {
                 child: Row(
                   children: <Widget>[
                    Expanded(child: Text(_selectedDate ==null? 'No Date Chosen!': 'Picked Date: ${DateFormat.yMd().format(_selectedDate)}',)),
+                   
+                   Platform.isIOS? CupertinoButton(
+                      child: Text('Choose Date',style: TextStyle(fontWeight: FontWeight.bold),),
+                      onPressed: _presentDatePicker,
+                   ):
                    FlatButton(
                       textColor: Theme.of(context).primaryColor,
                       child: Text('Choose Date',style: TextStyle(fontWeight: FontWeight.bold),),
@@ -85,8 +149,10 @@ class _NewTransactionState extends State<NewTransaction> {
                 child: Text('Add Transaction'),
                 color: Theme.of(context).primaryColor,
                 textColor: Theme.of(context).textTheme.button.color,
-                onPressed: _submitData,
-              )
+                onPressed: 
+                    ()=>showAlertDialog(context),
+                // _submitData,
+              ),
             ],
           ),
         ),
