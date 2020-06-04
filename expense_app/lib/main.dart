@@ -177,7 +177,8 @@ class _MyHomePageState extends State<MyHomePage> with WidgetsBindingObserver {
       'title': txTitle,
       'amount': txAmount,
       'date': chosenDate,
-      'id': DateTime.now().toString(),
+      'id': id,
+      // DateTime.now().toString(),
     });
     //SAP databasae
     // addDataToHana(txTitle, txAmount, chosenDate,id);
@@ -213,7 +214,14 @@ class _MyHomePageState extends State<MyHomePage> with WidgetsBindingObserver {
     ).deleteTrans(id);
   }
 
-  deletefromFirebase(String id) {
+  deletefromFirebase(String id) { 
+
+        prefix1.Firestore.instance
+        .collection('users/MvRj6kzu3KHf3G2RovX3/trans').getDocuments().then(
+          (snapshot){
+        snapshot.documents.where((element) =>element['id'] ==id).first.reference.delete();
+        
+  });
   }
 
   void _deleteTransaction(String id) {
@@ -227,6 +235,7 @@ class _MyHomePageState extends State<MyHomePage> with WidgetsBindingObserver {
           Navigator.of(context).pop();
           //SAP database
           // deleteFromHana(id);
+          deletefromFirebase(id);
           setState(() {
             _userTransaction.removeWhere((tx) => tx.id == id);
           });
@@ -257,7 +266,7 @@ class _MyHomePageState extends State<MyHomePage> with WidgetsBindingObserver {
   }
 
   List<Widget> _buildLanscapeContent(
-      MediaQueryData mediaQuery, AppBar appBar, Widget txListWidget) {
+      MediaQueryData mediaQuery, PreferredSizeWidget appBar, Widget txListWidget) {
     return [
       Row(
         mainAxisAlignment: MainAxisAlignment.center,
@@ -285,7 +294,7 @@ class _MyHomePageState extends State<MyHomePage> with WidgetsBindingObserver {
   }
 
   List<Widget> _buildPortraitContent(
-      MediaQueryData mediaQuery, AppBar appBar, Widget txListWidget) {
+      MediaQueryData mediaQuery, PreferredSizeWidget appBar, Widget txListWidget) {
     return [
       Container(
         height: (mediaQuery.size.height -
@@ -309,8 +318,12 @@ class _MyHomePageState extends State<MyHomePage> with WidgetsBindingObserver {
     // The Flutter framework has been optimized to make rerunning build methods
     // fast, so that you can just rebuild anything that needs updating rather
     // than having to individually change instances of widgets.
-    final PreferredSizeWidget appBar = Platform.isIOS
-        ? CupertinoNavigationBar(
+
+
+    final PreferredSizeWidget appBar = 
+    Platform.isIOS?
+
+         CupertinoNavigationBar(
             middle: Text('Personal Expenses'),
             trailing: Row(
               mainAxisSize: MainAxisSize.min,
@@ -322,7 +335,9 @@ class _MyHomePageState extends State<MyHomePage> with WidgetsBindingObserver {
               ],
             ),
           )
-        : AppBar(
+           as PreferredSizeWidget
+        :
+         AppBar(
             title: Text(
               'Personal Expenses',
             ),
@@ -336,6 +351,7 @@ class _MyHomePageState extends State<MyHomePage> with WidgetsBindingObserver {
             //         )
             // ],
           );
+
 
     final txListWidget =
         // user input widget and a list of transaction widget
@@ -362,6 +378,8 @@ class _MyHomePageState extends State<MyHomePage> with WidgetsBindingObserver {
               ..._buildLanscapeContent(mediaQuery, appBar, txListWidget),
             if (!isLandscape)
               ..._buildPortraitContent(mediaQuery, appBar, txListWidget),
+
+
 
 //chart area
 
