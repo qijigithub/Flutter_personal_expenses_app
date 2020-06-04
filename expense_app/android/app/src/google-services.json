@@ -1,0 +1,119 @@
+{
+  "project_info": {
+    "project_number": "998093846647",
+    "firebase_url": "https://expense-app-d2498.firebaseio.com",
+    "project_id": "expense-app-d2498",
+    "storage_bucket": "expense-app-d2498.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:998093846647:android:d618eaf705a5f5c1c6ae72",
+        "android_client_info": {
+          "package_name": "com.exaa"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "998093846647-0f7u592hce1jupj4e2ki2dnjo6f3do62.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAAuewr-nVjTerMOFnqEM5MIXGSpBW7y3I"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "998093846647-0f7u592hce1jupj4e2ki2dnjo6f3do62.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "998093846647-h26hefsjnicodufug18glgndkmbs6e1p.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "org.cocoapods.JiQiexpenseApp"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:998093846647:android:84b7c0654d6cf33bc6ae72",
+        "android_client_info": {
+          "package_name": "com.example.JiQiexpenseApp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "998093846647-0f7u592hce1jupj4e2ki2dnjo6f3do62.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAAuewr-nVjTerMOFnqEM5MIXGSpBW7y3I"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "998093846647-0f7u592hce1jupj4e2ki2dnjo6f3do62.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "998093846647-h26hefsjnicodufug18glgndkmbs6e1p.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "org.cocoapods.JiQiexpenseApp"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:998093846647:android:c5d9a985cd6fab82c6ae72",
+        "android_client_info": {
+          "package_name": "org.cocoapods.JiQiexpenseApp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "998093846647-0f7u592hce1jupj4e2ki2dnjo6f3do62.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAAuewr-nVjTerMOFnqEM5MIXGSpBW7y3I"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "998093846647-0f7u592hce1jupj4e2ki2dnjo6f3do62.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "998093846647-h26hefsjnicodufug18glgndkmbs6e1p.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "org.cocoapods.JiQiexpenseApp"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
